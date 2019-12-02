@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Innertube",
+  "description": "Seach Youtube videos",
+  "version": "1.0",
+
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
+
+  "browser_action": {
+   "default_icon": "static/base.png",
+   "default_popup": "views/popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs"
+   ]
+}
