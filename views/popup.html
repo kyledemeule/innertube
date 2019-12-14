@@ -3,18 +3,30 @@
   <head>
     <title>Innertube - Youtube video search</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script>
     <script src="../scripts/popup.js"></script>
   </head>
   <body>
-    <div id="search-content">
+    <div id="search-page">
         <h1>Innertube: Youtube video search.</h1>
-        <form>
-            <input type="text" name="searchtext" id="searchtext" />
+        <form id="search-form">
+            <input type="text" name="searchterm" id="searchterm" />
             <input type="submit" value="Search">
         </form>
+        <dl id="search-results">
+          <dt>0:28</dt>
+          <dd>The pace of the game</dd>
+        </dl>
     </div>
-    <div id="not-youtube-warning">
-        <p>This extension only works on www.youtube.com.</p>
+    <div id="warning-page">
+        <p id="warning-message"></p>
+    </div>
+    <div id="loading-page">
+      <img src="../static/loading.gif" />
+    </div>
+    <div id="error-page">
+      <h2>Error</h2>
+      <div>There's been an error.<br /><a href="">Retry</a></div>
     </div>
   </body>
 </html>
