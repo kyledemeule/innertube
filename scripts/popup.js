@@ -11,6 +11,17 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
       var search_term = $('#searchterm').val();
       populate_search_results(search_term);
   });
+
+
+  $('#searchterm').on('input', function() {
+    var search_term = $('#searchterm').val();
+    if(search_term == "" ) {
+      $('#search-results').empty();
+    $('#search-results').append("<dt>Enter a search term.</dt>");
+    } else {
+      populate_search_results(search_term);
+    }
+});
 });
 
 var main = function(tabs) {
