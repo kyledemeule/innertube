@@ -30,7 +30,7 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   $('body').on('click', 'a.search-result', function () {
       event.preventDefault();
       var seek_time = $(this).attr("value");
-      chrome.tabs.executeScript(state["tab_id"], {code: "player.seekTo(" + seek_time + ");"});
+      chrome.tabs.sendMessage(state["tab_id"], {function: "seek", seek_time: seek_time}, function(response) {});
   });
 
   //load saved captions

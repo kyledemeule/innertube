@@ -15,5 +15,11 @@
     "activeTab",
     "tabs",
     "storage"
+  ],
+  "content_scripts": [
+     {
+       "matches": ["https://www.youtube.com/*"],
+       "js": ["scripts/content.js"]
+     }
    ]
 }
