@@ -7,7 +7,6 @@ var state = {
 
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   state["url"] = tabs[0].url;
-  main();
 
   $("#search-form").submit(function(event) {
       event.preventDefault();
@@ -25,6 +24,17 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
       populate_search_results(search_term);
     }
   });
+
+  //load saved captions
+  chrome.storage.local.get(['captions'], function(result) {
+    if (result["captions"] == undefined) {
+      state["captions"] = {};
+    } else {
+      state["captions"] = result["captions"];
+    }
+    main();
+  });
+
 });
 
 var main = function() {
@@ -89,6 +99,7 @@ var check_caption = function() {
 }
 
 var get_caption = function(video_id) {
+  console.log("api.youtube.captions.list")
   $.ajax({
     type: "GET",
     url: "https://www.googleapis.com/youtube/v3/captions?videoId=" + video_id + "&part=snippet",
@@ -115,6 +126,7 @@ var get_caption = function(video_id) {
 }
 
 var download_caption = function(video_id, caption_id) {
+  console.log("api.youtube.captions.download")
   $.ajax({
     type: "GET",
     url: "https://www.googleapis.com/youtube/v3/captions/" + caption_id,
@@ -153,6 +165,9 @@ var handle_caption_response = function(response) {
       })
   }
   state["captions"][state["video_id"]] = lines;
+  chrome.storage.local.set({"captions": state["captions"]}, function() {
+    console.log("Saved caption to storage.");
+  });
   main();
 }
 
