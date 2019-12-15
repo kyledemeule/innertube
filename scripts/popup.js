@@ -2,11 +2,13 @@ var state = {
   "access_token": "",
   "captions": {},
   "indexes": {},
-  "url": ""
+  "url": "",
+  "tab_id": ""
 };
 
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   state["url"] = tabs[0].url;
+  state["tab_id"] = tabs[0].id;
 
   $("#search-form").submit(function(event) {
       event.preventDefault();
@@ -23,6 +25,12 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
     } else {
       populate_search_results(search_term);
     }
+  });
+
+  $('body').on('click', 'a.search-result', function () {
+      event.preventDefault();
+      var seek_time = $(this).attr("value");
+      chrome.tabs.executeScript(state["tab_id"], {code: "player.seekTo(" + seek_time + ");"});
   });
 
   //load saved captions
@@ -198,8 +206,24 @@ var populate_search_results = function(search_term) {
     $('#search-results').append("<dt>No results.</dt>");
   } else {
     for(i = 0; i < search_results.length; i++) {
-      $('#search-results').append("<dt><a href=''>" + search_results[i].doc.start + "</a></dt>");
+      var video_time = parse_video_time(search_results[i].doc.start);
+      $('#search-results').append("<dt><a href='#' class='search-result' value='" + video_time + "'>" + search_results[i].doc.start + "</a></dt>");
       $('#search-results').append("<dd>" + search_results[i].doc.line + "</dd>");
     }
+  }
+}
+
+var parse_video_time = function(time_string) {
+  if (typeof(time_string) != "string") {
+    return 0;
+  } else {
+    // format should be hour:minute:second
+    var pieces = time_string.split(":");
+    if(pieces.length != 3) {
+      return 0;
+    }
+    var number_pieces = pieces.map(x => new Number(x))
+    // return in seconds
+    return Math.floor(3600 * number_pieces[0] + 60 *number_pieces[1] + number_pieces[2]);
   }
 }
