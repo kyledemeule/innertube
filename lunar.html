@@ -1,0 +1,369 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+
+        var documents = [{
+    "start": "0:00:02.460",
+    "end": "0:00:06.620",
+    "line": "So this video is going to inform you of how a turbo charger works"
+}, {
+    "start": "0:00:07.140",
+    "end": "0:00:09.580",
+    "line": "and the components needed for a turbocharger system"
+}, {
+    "start": "0:00:11.180",
+    "end": "0:00:12.940",
+    "line": "So...here's what happens"
+}, {
+    "start": "0:00:13.540",
+    "end": "0:00:18.740",
+    "line": "Now, we know in our engine cycle that at the end we're going to force out exhaust gases"
+}, {
+    "start": "0:00:19.180",
+    "end": "0:00:26.300",
+    "line": "So these exhaust gases are fed out through some piping into this turbine called a turbocharger"
+}, {
+    "start": "0:00:27.040",
+    "end": "0:00:34.380",
+    "line": "Which what happens here is that these exhaust gases spin the turbine, and this turbine is connected"
+}, {
+    "start": "0:00:34.400",
+    "end": "0:00:45.120",
+    "line": "by a shaft...(we can represent that right here) connected to another turbine which is sucking in outside air as it spins"
+}, {
+    "start": "0:00:45.240",
+    "end": "0:00:50.700",
+    "line": "this outside air is forced in and it's going to be pressurized now"
+}, {
+    "start": "0:00:50.800",
+    "end": "0:00:58.380",
+    "line": "so it's not just atmospheric pressure that you're putting into the engine, you're forcing in more air. So we call that boost"
+}, {
+    "start": "0:00:58.580",
+    "end": "0:01:07.100",
+    "line": "so this air is forced in, now what happens when you're forcing in a greater amount of air is when you add pressure, you also add heat"
+}, {
+    "start": "0:01:07.100",
+    "end": "0:01:14.720",
+    "line": "and you don't want to add already hot air into the engine, so you're gonna pass this air through an intercooler."
+}, {
+    "start": "0:01:15.380",
+    "end": "0:01:23.800",
+    "line": "now, this is just a bunch of coils, some of them use a liquid system, but most of them are air-based and it'll pass through some coils"
+}, {
+    "start": "0:01:23.860",
+    "end": "0:01:25.380",
+    "line": "and that will cool down the air."
+}, {
+    "start": "0:01:25.640",
+    "end": "0:01:35.600",
+    "line": "this cool air, then travels through the intake manifold and that will come into your engine chamber"
+}, {
+    "start": "0:01:35.980",
+    "end": "0:01:41.180",
+    "line": "now, there are some things that people have added in to make this more feasible"
+}, {
+    "start": "0:01:41.180",
+    "end": "0:01:46.380",
+    "line": "so we've got two things here now, the Blow-Off Valve, and we've got a wastegate"
+}, {
+    "start": "0:01:46.960",
+    "end": "0:01:57.660",
+    "line": "now, when you have exhaust gases coming through, and you don't want  to reach, say--8psi--so you set a limit on your wastegate"
+}, {
+    "start": "0:01:58.700",
+    "end": "0:02:08.760",
+    "line": "at 8psi, and what happens when this turbine spinning here realizes that the air sucking in is going to be forced in at 8psi"
+}, {
+    "start": "0:02:09.040",
+    "end": "0:02:16.360",
+    "line": "it'll open up this wastegate this wastegate will allow this air that's going into the exhaust turbine to feed out through the exhaust"
+}, {
+    "start": "0:02:16.360",
+    "end": "0:02:20.200",
+    "line": "instead of creating more boost. So that helps on this side"
+}, {
+    "start": "0:02:21.040",
+    "end": "0:02:29.820",
+    "line": "now, on the other hand every time you let go of the ignition, you're going to have boost inside of this intake"
+}, {
+    "start": "0:02:29.820",
+    "end": "0:02:36.820",
+    "line": "manifold that you can't use. So what happens is you'll shut off the throttle, this intake valve will close,"
+}, {
+    "start": "0:02:36.820",
+    "end": "0:02:42.480",
+    "line": "and you've got all this pressurized air that's wanting to go into this cylinder"
+}, {
+    "start": "0:02:42.740",
+    "end": "0:02:48.580",
+    "line": "so because it's got no where to go, you get a Blow-Off valve which will let that air escape."
+}, {
+    "start": "0:02:48.680",
+    "end": "0:02:50.340",
+    "line": "Now how this works is"
+}, {
+    "start": "0:02:50.480",
+    "end": "0:02:57.540",
+    "line": "once you get to the PSI that you set at, say you'll have a spring that at 6psi, it'll let air out."
+}, {
+    "start": "0:02:58.240",
+    "end": "0:03:07.760",
+    "line": "so you're revving up high in your car, you let go of the gas, and this throttle plate closes, and then all this air is being forced"
+}, {
+    "start": "0:03:07.920",
+    "end": "0:03:12.540",
+    "line": "into here and it reaches 6 psi, well this spring lifts up and it lets the air out"
+}, {
+    "start": "0:03:12.540",
+    "end": "0:03:19.120",
+    "line": "and you'll hear a hissing sound, that's what that is when you let off the throttle plate is this Blow-Off valve letting out air"
+}, {
+    "start": "0:03:20.180",
+    "end": "0:03:28.820",
+    "line": "so, those are the main four components. You've got the turbocharger which consists of the two turbines, used to force in air, you've got the intercooler which"
+}, {
+    "start": "0:03:28.860",
+    "end": "0:03:39.280",
+    "line": "cools the air going into the engine, you've got wastegate that lets exhaust gases escape if you've reached a high enough boost already, and you've got the blow-off valve for when you"
+}, {
+    "start": "0:03:39.280",
+    "end": "0:03:43.640",
+    "line": "let go of the gas the air has somewhere to go, and those are the four main components"
+}, {
+    "start": "0:03:43.960",
+    "end": "0:03:44.960",
+    "line": "of a turbocharger"
+}]
+        var idx = elasticlunr(function () {
+            this.setRef('start')
+            this.addField('line')
+            documents.forEach(function (doc) {
+                console.log("Adding doc " + doc)
+                this.addDoc(doc)
+            }, this)
+        })
+
+    elasticlunr.clearStopWords()
+
+    elasticlunr.stemmer = (function(){
+  var step2list = {
+      "ational" : "ate",
+      "tional" : "tion",
+      "enci" : "ence",
+      "anci" : "ance",
+      "izer" : "ize",
+      "bli" : "ble",
+      "alli" : "al",
+      "entli" : "ent",
+      "eli" : "e",
+      "ousli" : "ous",
+      "ization" : "ize",
+      "ation" : "ate",
+      "ator" : "ate",
+      "alism" : "al",
+      "iveness" : "ive",
+      "fulness" : "ful",
+      "ousness" : "ous",
+      "aliti" : "al",
+      "iviti" : "ive",
+      "biliti" : "ble",
+      "logi" : "log"
+    },
+
+    step3list = {
+      "icate" : "ic",
+      "ative" : "",
+      "alize" : "al",
+      "iciti" : "ic",
+      "ical" : "ic",
+      "ful" : "",
+      "ness" : ""
+    },
+
+    c = "[^aeiou]",          // consonant
+    v = "[aeiouy]",          // vowel
+    C = c + "[^aeiouy]*",    // consonant sequence
+    V = v + "[aeiou]*",      // vowel sequence
+
+    mgr0 = "^(" + C + ")?" + V + C,               // [C]VC... is m>0
+    meq1 = "^(" + C + ")?" + V + C + "(" + V + ")?$",  // [C]VC[V] is m=1
+    mgr1 = "^(" + C + ")?" + V + C + V + C,       // [C]VCVC... is m>1
+    s_v = "^(" + C + ")?" + v;                   // vowel in stem
+
+  var re_mgr0 = new RegExp(mgr0);
+  var re_mgr1 = new RegExp(mgr1);
+  var re_meq1 = new RegExp(meq1);
+  var re_s_v = new RegExp(s_v);
+
+  var re_1a = /^(.+?)(ss|i)es$/;
+  var re2_1a = /^(.+?)([^s])s$/;
+  var re_1b = /^(.+?)eed$/;
+  var re2_1b = /^(.+?)(ed|ing)$/;
+  var re_1b_2 = /.$/;
+  var re2_1b_2 = /(at|bl|iz)$/;
+  var re3_1b_2 = new RegExp("([^aeiouylsz])\\1$");
+  var re4_1b_2 = new RegExp("^" + C + v + "[^aeiouwxy]$");
+
+  var re_1c = /^(.+?[^aeiou])y$/;
+  var re_2 = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
+
+  var re_3 = /^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/;
+
+  var re_4 = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
+  var re2_4 = /^(.+?)(s|t)(ion)$/;
+
+  var re_5 = /^(.+?)e$/;
+  var re_5_1 = /ll$/;
+  var re3_5 = new RegExp("^" + C + v + "[^aeiouwxy]$");
+
+  var porterStemmer = function porterStemmer(w) {
+    var   stem,
+      suffix,
+      firstch,
+      re,
+      re2,
+      re3,
+      re4;
+
+    if (w.length < 3) { return w; }
+
+    firstch = w.substr(0,1);
+    if (firstch == "y") {
+      w = firstch.toUpperCase() + w.substr(1);
+    }
+
+    // Step 1a
+    re = re_1a
+    re2 = re2_1a;
+
+    if (re.test(w)) { w = w.replace(re,"$1$2"); }
+    else if (re2.test(w)) { w = w.replace(re2,"$1$2"); }
+
+    // Step 1b
+    re = re_1b;
+    re2 = re2_1b;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      re = re_mgr0;
+      if (re.test(fp[1])) {
+        re = re_1b_2;
+        w = w.replace(re,"");
+      }
+    } else if (re2.test(w)) {
+      var fp = re2.exec(w);
+      stem = fp[1];
+      re2 = re_s_v;
+      if (re2.test(stem)) {
+        w = stem;
+        re2 = re2_1b_2;
+        re3 = re3_1b_2;
+        re4 = re4_1b_2;
+        if (re2.test(w)) {  w = w + "e"; }
+        else if (re3.test(w)) { re = re_1b_2; w = w.replace(re,""); }
+        else if (re4.test(w)) { w = w + "e"; }
+      }
+    }
+
+    // Step 1c - replace suffix y or Y by i if preceded by a non-vowel which is not the first letter of the word (so cry -> cri, by -> by, say -> say)
+    re = re_1c;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      stem = fp[1];
+      w = stem + "i";
+    }
+
+    // Step 2
+    re = re_2;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      stem = fp[1];
+      suffix = fp[2];
+      re = re_mgr0;
+      if (re.test(stem)) {
+        w = stem + step2list[suffix];
+      }
+    }
+
+    // Step 3
+    re = re_3;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      stem = fp[1];
+      suffix = fp[2];
+      re = re_mgr0;
+      if (re.test(stem)) {
+        w = stem + step3list[suffix];
+      }
+    }
+
+    // Step 4
+    re = re_4;
+    re2 = re2_4;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      stem = fp[1];
+      re = re_mgr1;
+      if (re.test(stem)) {
+        w = stem;
+      }
+    } else if (re2.test(w)) {
+      var fp = re2.exec(w);
+      stem = fp[1] + fp[2];
+      re2 = re_mgr1;
+      if (re2.test(stem)) {
+        w = stem;
+      }
+    }
+
+    // Step 5
+    re = re_5;
+    if (re.test(w)) {
+      var fp = re.exec(w);
+      stem = fp[1];
+      re = re_mgr1;
+      re2 = re_meq1;
+      re3 = re3_5;
+      if (re.test(stem) || (re2.test(stem) && !(re3.test(stem)))) {
+        w = stem;
+      }
+    }
+
+    re = re_5_1;
+    re2 = re_mgr1;
+    if (re.test(w) && re2.test(w)) {
+      re = re_1b_2;
+      w = w.replace(re,"");
+    }
+
+    // and turn initial Y back to y
+
+    if (firstch == "y") {
+      w = firstch.toLowerCase() + w.substr(1);
+    }
+
+    return w;
+  };
+
+  return porterStemmer;
+})();
+
+elasticlunr.Pipeline.registerFunction(elasticlunr.stemmer, 'stemmer');
+
+    token = idx.search("boosting")
+
+    console.log(token)
+
+    for(I = 0; I <token.length ; I = I+1)
+	{
+        console.log(token[I].doc);
+	}
+    
+  
+    
+    </script>
+</body>
+</html>
