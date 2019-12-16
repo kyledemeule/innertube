@@ -6,6 +6,16 @@ var state = {
   "tab_id": ""
 };
 
+var auth = function() {
+  chrome.identity.getAuthToken({interactive: true}, function(token) {
+    state["access_token"] = token;
+    // TODO : Remove log before release/submission
+    console.log("Token assigned to local state : " + state.access_token);
+  });
+}
+
+window.onload = auth();
+
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   state["url"] = tabs[0].url;
   state["tab_id"] = tabs[0].id;
@@ -47,6 +57,7 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 
 var main = function() {
   hide_all();
+
   var on_youtube_video_page = check_url();
   if (!on_youtube_video_page) {
     set_warning("This extension only works on a video page on www.youtube.com.");
@@ -108,6 +119,7 @@ var check_caption = function() {
 
 var get_caption = function(video_id) {
   console.log("api.youtube.captions.list")
+  console.log("Access Token " + state.access_token)
   $.ajax({
     type: "GET",
     url: "https://www.googleapis.com/youtube/v3/captions?videoId=" + video_id + "&part=snippet",
