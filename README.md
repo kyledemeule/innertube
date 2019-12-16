@@ -55,7 +55,7 @@ The following technologies are used:
 - [Youtube iFrame Player API](https://developers.google.com/youtube/iframe_api_reference)
 - [Elasticlunr.js](http://elasticlunr.com/)
 - [jQuery](https://jquery.com/)
-- [Google API Client Library for JavaScript]https://github.com/google/google-api-javascript-client)
+- [Google API Client Library for JavaScript](https://github.com/google/google-api-javascript-client)
 
 ### Search Index
 
