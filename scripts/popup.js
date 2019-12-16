@@ -150,7 +150,7 @@ var get_caption = function(video_id) {
     },
     error: function (qXHR, textStatus, errorThrown) {
       if(qXHR.status == 401) {
-        set_warning("Credentials have expired.");
+        set_warning("Credentials are invalid.");
       } else {
         hide_all();
         $('#error-page').show();
@@ -176,7 +176,7 @@ var download_caption = function(video_id, caption_id) {
     },
     error: function (qXHR, textStatus, errorThrown) {
       if(qXHR.status == 401) {
-        set_warning("Credentials have expired.");
+        set_warning("Credentials are invalid.");
       } else if(qXHR.status == 403) {
         handle_403_captions();
       } else {
