@@ -9,8 +9,6 @@ var state = {
 var auth = function() {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
     state["access_token"] = token;
-    // TODO : Remove log before release/submission
-    console.log("Token assigned to local state : " + state.access_token);
   });
 }
 
@@ -70,6 +68,11 @@ var main = function() {
     get_caption(state["video_id"]);
     return
   }
+  var caption_is_valid = check_valid_caption();
+  if (!caption_is_valid) {
+    set_warning("This videos creator has disabled third party caption access.");
+    return
+  }
   var index_is_built = check_index();
   if (!index_is_built) {
     $('#loading-page').show();
@@ -117,9 +120,16 @@ var check_caption = function() {
   }
 }
 
+var check_valid_caption = function() {
+  if("captions" in state && state["video_id"] in state["captions"] && state["captions"][state["video_id"]].length != 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 var get_caption = function(video_id) {
   console.log("api.youtube.captions.list")
-  console.log("Access Token " + state.access_token)
   $.ajax({
     type: "GET",
     url: "https://www.googleapis.com/youtube/v3/captions?videoId=" + video_id + "&part=snippet",
@@ -138,9 +148,13 @@ var get_caption = function(video_id) {
       set_warning("This video has no english captions.");
       return 0;
     },
-    failure: function (response) {
-      hide_all();
-      $('#error-page').show();
+    error: function (qXHR, textStatus, errorThrown) {
+      if(qXHR.status == 401) {
+        set_warning("Credentials have expired.");
+      } else {
+        hide_all();
+        $('#error-page').show();
+      }
     }
   });
 }
@@ -153,13 +167,22 @@ var download_caption = function(video_id, caption_id) {
     headers: {
       "Authorization": "Bearer " + state.access_token
     },
+    data: {
+      tfmt: "sbv"
+    },
     success: function (response){
       handle_caption_response(response);
       return 1;
     },
-    failure: function (response) {
-      hide_all();
-      $('#error-page').show();
+    error: function (qXHR, textStatus, errorThrown) {
+      if(qXHR.status == 401) {
+        set_warning("Credentials have expired.");
+      } else if(qXHR.status == 403) {
+        handle_403_captions();
+      } else {
+        hide_all();
+        $('#error-page').show();
+      }
     }
   });
 }
@@ -189,6 +212,14 @@ var handle_caption_response = function(response) {
     console.log("Saved caption to storage.");
   });
   main();
+}
+
+var handle_403_captions = function() {
+  state["captions"][state["video_id"]] = [];
+  chrome.storage.local.set({"captions": state["captions"]}, function() {
+    console.log("Saved 403 caption to storage.");
+  });
+  set_warning("This videos creator has disabled third party caption access.");
 }
 
 var check_index = function() {
