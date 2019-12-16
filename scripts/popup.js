@@ -9,8 +9,6 @@ var state = {
 var auth = function() {
   chrome.identity.getAuthToken({interactive: true}, function(token) {
     state["access_token"] = token;
-    // TODO : Remove log before release/submission
-    console.log("Token assigned to local state : " + state.access_token);
   });
 }
 
@@ -168,6 +166,9 @@ var download_caption = function(video_id, caption_id) {
     url: "https://www.googleapis.com/youtube/v3/captions/" + caption_id,
     headers: {
       "Authorization": "Bearer " + state.access_token
+    },
+    data: {
+      tfmt: "sbv"
     },
     success: function (response){
       handle_caption_response(response);
