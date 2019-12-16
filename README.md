@@ -28,3 +28,35 @@ Some videos that allow third party caption downloads:
 - [Learning Sentiment Lexicons](https://www.youtube.com/watch?v=Ogm5E2JNCzg)
 
 ## Implementation
+
+A general overview of the major files:
+- `manifest.json`: Includes configuration information that describes the application
+- `views/popup.html`: HTML of the major popup. Has "pages" that are shown or hidden based on current state of the extension.
+- `scripts/popup.js`: Majority of logic of the application. Executes in the context of `popup.html` only, not the Youtube page. Handles authentication, interaction with Youtube Data API, index building, processing search results, and trigger Youtube Player seeks.
+- `scripts/content.js`: This is the Javascript that executes in the Youtubes DOM. However it does not have access to the objects the Youtubes Javascript has implemented (e.g. the Youtube iFrame Player to perform `seekTo()`). To run code completely in Youtubes context, this content will injext scripts in to the page.
+
+A flowchart of what happens when the plugin is opened:
+![open flow](images/flow.png "Open Flow")
+
+Overall it handles:
+- Authentication
+- Ensuring we're on Youtube
+- Download caption
+- Create search index
+- Show search page
+
+When a search is entered, `popup.js` will grab the value of the input field, run it throught he search index, and populate a `<dl>` with the ordered search results.
+
+When a search result is clicked, `popup.js` will get the start time of the selection, convert it to seconds, send the seconds to `content.js`, and `content.js` will inject code to run `seekTo()` on the player in the Youtube page.
+
+The following technologies are used:
+- [Chrome Extensions](https://developer.chrome.com/extensions/devguide)
+- [Youtube Data API](https://developers.google.com/youtube/v3)
+- [Youtube iFrame Player API](https://developers.google.com/youtube/iframe_api_reference)
+- [Elasticlunr.js](http://elasticlunr.com/)
+- [jQuery](https://jquery.com/)
+- [Google API Client Library for JavaScript]https://github.com/google/google-api-javascript-client)
+
+### Search Index
+
+The search index is built using [elasticlunr.js](http://elasticlunr.com/). It implements a ranking algorithm that utilizes TF/IDF and a vector space model. We also incorporate stop word filtering (i.e. remove common english words), stemming (reduce related words to their stems, e.g. running -> run), and token expansion (expand small words, e.g. auto -> autofocus).
