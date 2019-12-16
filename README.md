@@ -4,6 +4,11 @@ This is the repository for an Chrome Extension that allows searching Youtube vid
 
 Included is a [presentation](presentation.pdf) describing the project.
 
+## Team
+- Arushi Garg (arushig6)​
+- Kyle Demeule (demeule2)​
+- Suraj Nayak (surajn3)
+
 ## Installation
 
 This extension is entirely self contained and does not require any other servers to run. To use it you will need:
