@@ -132,7 +132,6 @@ var check_valid_caption = function() {
 
 var get_caption = function(video_id) {
   console.log("api.youtube.captions.list")
-  console.log("Access Token " + state.access_token)
   $.ajax({
     type: "GET",
     url: "https://www.googleapis.com/youtube/v3/captions?videoId=" + video_id + "&part=snippet",
