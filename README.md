@@ -2,6 +2,8 @@
 
 This is the repository for an Chrome Extension that allows searching Youtube videos based on their captions.
 
+Included is a [presentation](presentation.pdf) describing the project.
+
 ## Installation
 
 This extension is entirely self contained and does not require any other servers to run. To use it you will need:
@@ -67,4 +69,8 @@ The following technologies are used:
 
 ### Search Index
 
-The search index is built using [elasticlunr.js](http://elasticlunr.com/). It implements a ranking algorithm that utilizes TF/IDF and a vector space model. We also incorporate stop word filtering (i.e. remove common english words), stemming (reduce related words to their stems, e.g. running -> run), and token expansion (expand small words, e.g. auto -> autofocus).
+
+The search index is built using [elasticlunr.js](http://elasticlunr.com/). It implements a ranking algorithm that utilizes TF/IDF and a vector space model. We also incorporate stop word filtering (i.e. remove common english words), and stemming (reduce related words to their stems, e.g. running -> run).
+
+A possible expansion to the index is to use token expansion (expand small words, e.g. auto -> autofocus), but we don't include that currently.
+

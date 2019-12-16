@@ -150,7 +150,7 @@ var get_caption = function(video_id) {
     },
     error: function (qXHR, textStatus, errorThrown) {
       if(qXHR.status == 401) {
-        set_warning("Credentials have expired.");
+        set_warning("Credentials are invalid.");
       } else {
         hide_all();
         $('#error-page').show();
@@ -176,7 +176,7 @@ var download_caption = function(video_id, caption_id) {
     },
     error: function (qXHR, textStatus, errorThrown) {
       if(qXHR.status == 401) {
-        set_warning("Credentials have expired.");
+        set_warning("Credentials are invalid.");
       } else if(qXHR.status == 403) {
         handle_403_captions();
       } else {
@@ -189,23 +189,18 @@ var download_caption = function(video_id, caption_id) {
 
 // parse the captions, create the search index
 var handle_caption_response = function(response) {
-  response_split = response.split("\n");
-  nb = [];
-  for(i = 0; i < response_split.length;i++) {
-      if(response_split[i] != "") {
-          nb.push(response_split[i]);
-      }
-  };
   lines = [];
-  for(i = 0; i < nb.length; i += 2) {
-      timestamps = nb[i];
-      line = nb[i + 1];
-      timestamp_pieces = timestamps.split(",");
-      lines.push({
-          "start": timestamp_pieces[0],
-          "end": timestamp_pieces[1],
-          "line": line
-      })
+  response_split = response.split("\n\n");
+  for(i = 0; i < response_split.length;i++) {
+    seg_split = response_split[i].split("\n");
+    timestamp = seg_split.shift();
+    timestamp_pieces = timestamp.split(",");
+    line = seg_split.join(" ");
+    lines.push({
+        "start": timestamp_pieces[0],
+        "end": timestamp_pieces[1],
+        "line": line
+    })
   }
   state["captions"][state["video_id"]] = lines;
   chrome.storage.local.set({"captions": state["captions"]}, function() {
@@ -269,4 +264,10 @@ var parse_video_time = function(time_string) {
     // return in seconds
     return Math.floor(3600 * number_pieces[0] + 60 *number_pieces[1] + number_pieces[2]);
   }
+}
+
+var clear_cache = function() {
+  chrome.storage.local.set({"captions": {}}, function() {
+      console.log("Captions cache cleared.");
+  });
 }
