@@ -22,7 +22,7 @@ After authenticating, you can navigate to a Youtube video. Clicking the extensio
 
 For authentication we are using [`chrome.identity`](https://developer.chrome.com/apps/identity) package. If you want to change the client ID :
 
-- Make sure the zip you are trying to upload doesn't contain "key" in the `manifest.json`
+- Make sure the zip you are trying to upload doesn't contain `key` in the `manifest.json`
 - Follow [Official Google Chrome Extension Documentation](https://developer.chrome.com/extensions/tut_oauth#upload_to_dashboard). Here, you need to save the application as draft so that you can obtain the public `key` from the dashboard. Add this in manifest.json. [Example manifest.json#L30](https://github.com/kyledemeule/innertube/blob/672d5c64f555cbd6b23626fe0fd7f3a80cd3bc03/manifest.json#L30)
 - Create OAuth [Client ID](https://developer.chrome.com/extensions/tut_oauth#oauth_client). Use the Chrome app ID in the `chrome://extensions` in the Application ID. One the Client ID is generated, edit your manifest.json to update your new client ID. [Example manifest.json#L27](https://github.com/kyledemeule/innertube/blob/672d5c64f555cbd6b23626fe0fd7f3a80cd3bc03/manifest.json#L27)
 - Go to `chrome://extensions` and reload the Innertube App. Now you can go to any supported youtube video and search the captions using Innertube with new client ID.
