@@ -6,6 +6,16 @@ var state = {
   "tab_id": ""
 };
 
+var auth = function() {
+  chrome.identity.getAuthToken({interactive: true}, function(token) {
+    state["access_token"] = token;
+    // TODO : Remove log before release/submission
+    console.log("Token assigned to local state : " + state.access_token);
+  });
+}
+
+window.onload = auth();
+
 chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   state["url"] = tabs[0].url;
   state["tab_id"] = tabs[0].id;
@@ -45,18 +55,8 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
 
 });
 
-var auth = function() {
-  chrome.identity.getAuthToken({interactive: true}, function(token) {
-    state["access_token"] = token;
-    // TODO : Remove log before release/submission
-    console.log("Token assigned to local state : " + state.access_token);
-  });
-}
-
 var main = function() {
   hide_all();
-
-  auth();
 
   var on_youtube_video_page = check_url();
   if (!on_youtube_video_page) {
